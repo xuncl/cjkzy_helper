@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <Button 
+        android:id="@+id/start"
+        android:layout_width="fill_parent"  
+        android:layout_height="wrap_content"  
+        android:text="startService"/>
+    
+    <Button 
+        android:id="@+id/stop"
+        android:layout_width="fill_parent"  
+        android:layout_height="wrap_content"  
+        android:text="stopService"/>
+    
+     <Button 
+        android:id="@+id/bind"
+        android:layout_width="fill_parent"  
+        android:layout_height="wrap_content"  
+        android:text="bindService"/>
+    
+    <Button 
+        android:id="@+id/unbind"
+        android:layout_width="fill_parent"  
+        android:layout_height="wrap_content"  
+        android:text="unbindService"/>
+    
+	<EditText
+	    android:id="@+id/demotext"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:textSize="18sp"
+	    android:editable="true"
+	    android:text="@string/demo_text"/>
+    
+	<TextView 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:textSize="16sp"
+	    android:layout_margin="20dp"
+	    android:text="@string/tishi"
+	    android:textColor="@android:color/holo_blue_bright"/>
+	
+	<TextView 
+	    android:id="@+id/clip_text"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:textSize="18sp"
+	    android:textColor="@android:color/holo_red_light"/>
+	
+	
+</LinearLayout>
