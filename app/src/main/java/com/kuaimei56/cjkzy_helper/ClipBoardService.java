@@ -10,11 +10,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.kuaimei56.cjkzy_helper.entity.Strategy;
 import com.kuaimei56.cjkzy_helper.utils.Const;
-import com.kuaimei56.cjkzy_helper.utils.LogUtils;
-
-import java.util.ArrayList;
 
 /**
  * 
@@ -35,7 +31,6 @@ public class ClipBoardService extends Service{
 		super.onCreate();
 // 获取剪贴板服务
         final ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-//        LogUtils.e(Const.STRATEGY_TAG, "Reg the clipboard listener.");
         // 添加监听，而不是设置
         // 如果系统添加了多次监听，则每个方法都会被执行
         cm.addPrimaryClipChangedListener(new OnPrimaryClipChangedListener() {
@@ -47,8 +42,6 @@ public class ClipBoardService extends Service{
                 Item item = data.getItemAt(0);
                 Intent xIntent = new Intent();
                 xIntent.setAction(Const.ACTION_CLIP);
-//                    xIntent.putExtra(Const.KEY_STRATEGY_LIST, strategies);
-//                    LogUtils.e(Const.STRATEGY_TAG, "3 ClipBoardService SEND strategyList=" + strategies);
                 xIntent.putExtra(Const.KEY_CLIP, item.getText().toString());
                 sendBroadcast(xIntent);
                 //TODO : 这里没有执行

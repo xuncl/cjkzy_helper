@@ -16,7 +16,7 @@ import com.kuaimei56.cjkzy_helper.data.DataFetcher;
 import com.kuaimei56.cjkzy_helper.data.MyDatabaseHelper;
 import com.kuaimei56.cjkzy_helper.entity.Strategy;
 import com.kuaimei56.cjkzy_helper.utils.Const;
-import com.kuaimei56.cjkzy_helper.utils.LogUtils;
+import com.loopj.android.http.AsyncHttpClient;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
@@ -38,6 +38,7 @@ public class ClipBoardActivity extends Activity implements OnClickListener {
 
 	private ClipBoardReceiver mBoardReceiver;
 
+    // 全局变量 当前所有的过滤策略
 	public static ArrayList<Strategy> strategyList;
 
 	private MyDatabaseHelper dbHelper;
@@ -55,6 +56,8 @@ public class ClipBoardActivity extends Activity implements OnClickListener {
 		MobclickAgent.UMAnalyticsConfig config = new MobclickAgent.UMAnalyticsConfig(mContext,
 				Const.UMENG_APPKEY, Const.UMENG_CHANNELID, MobclickAgent.EScenarioType.E_UM_NORMAL);
 		MobclickAgent.startWithConfigure(config);
+
+
 	}
 
 	private void initDatabase() {
@@ -88,9 +91,6 @@ public class ClipBoardActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		Intent mIntent = new Intent();
-//		mIntent.putExtra(Const.KEY_STRATEGY_LIST,strategyList);
-//        LogUtils.e(Const.STRATEGY_TAG, "1 ClipBoardService SEND strategyList=" + strategyList);
-//		LogUtils.v(Const.STRATEGY_TAG, "Here put strategyList into intent.");
 		switch (v.getId()) {
 		case R.id.start:
             // 开启监听
@@ -131,7 +131,6 @@ public class ClipBoardActivity extends Activity implements OnClickListener {
 			if(bundle != null){
 				String value = (String) bundle.get(Const.KEY_CLIP);
 				Intent show = new Intent(ClipBoardActivity.this, FloatingWindowService.class);
-//				show.putExtra(Const.KEY_STRATEGY_LIST,strategyList);
                 show.putExtra(Const.OPERATION,Const.OPERATION_SHOW);
 				show.putExtra(Const.KEY_COPY, value);
 				// 广播的功能：把剪贴板的数据value发送给悬浮窗服务
