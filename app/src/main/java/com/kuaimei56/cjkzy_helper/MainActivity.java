@@ -20,8 +20,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-
 import com.kuaimei56.cjkzy_helper.utils.HttpUtils;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.BinaryHttpResponseHandler;

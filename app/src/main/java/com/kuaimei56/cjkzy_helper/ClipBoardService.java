@@ -29,7 +29,7 @@ public class ClipBoardService extends Service{
 	@Override
 	public void onCreate() {
 		super.onCreate();
-// 获取剪贴板服务
+		// 获取剪贴板服务
         final ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         // 添加监听，而不是设置
         // 如果系统添加了多次监听，则每个方法都会被执行
@@ -37,7 +37,6 @@ public class ClipBoardService extends Service{
             @Override
             public void onPrimaryClipChanged() {
                 // API11后所有剪切板操作都在ClipData中
-//                LogUtils.v(Const.STRATEGY_TAG, "Clip changed receive!");
                 ClipData data = cm.getPrimaryClip();
                 Item item = data.getItemAt(0);
                 Intent xIntent = new Intent();

@@ -49,4 +49,6 @@ public final class Const {
 
     public static final String UMENG_APPKEY = "578e2709e0f55a16490019e5";
     public static final String UMENG_CHANNELID = "Manual";
+
+    public static final String TEXT_TAG_PRE_RAW = "[RAW]";
 }

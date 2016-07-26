@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import com.kuaimei56.cjkzy_helper.data.DataFetcher;
 import com.kuaimei56.cjkzy_helper.data.MyDatabaseHelper;
 import com.kuaimei56.cjkzy_helper.entity.Strategy;
+import com.kuaimei56.cjkzy_helper.http.RawMessageSender;
 import com.kuaimei56.cjkzy_helper.utils.Const;
 import com.kuaimei56.cjkzy_helper.utils.LogUtils;
 import com.kuaimei56.cjkzy_helper.utils.RegexMatch;
@@ -169,17 +170,15 @@ public class FloatingWindowService extends Service{
 	 */
 	private void setupCellView(View rootView) {
 		ImageView closedImg = (ImageView) rootView.findViewById(R.id.float_window_closed);
-//		TextView titleText = (TextView) rootView.findViewById(R.id.float_window_title);
-//		titleText.setText(copyValue);
 
-
-		// TODO: add how to judge here.
-
-
+        // 判断复制过来的字符串
 		if (null!=copyValue){
-			boolean allChecked = checkString(copyValue);
-			if(allChecked){
+            // 进行本地过滤策略
+			String checkedResult = checkString(copyValue);
+			if(null!=checkedResult){
+                // 显示绿色并发送
                 rootView.setBackgroundColor(Color.rgb(0, 255, 0));
+                RawMessageSender.send(checkedResult);
             }else{
                 rootView.setBackgroundColor(Color.rgb(255, 0, 0));
             }
@@ -204,13 +203,22 @@ public class FloatingWindowService extends Service{
 		});
 	}
 
-	private boolean checkString(String copyValue) {
+	/**
+	 * 使用本地策略检查字符串是否合法
+	 * @param copyValue 字符串
+	 * @return 加过标签的字符串，如果为空，说明验证未通过
+	 */
+	private String checkString(String copyValue) {
         if (null==strategies) {
             LogUtils.e(Const.STRATEGY_TAG, "The strategy list is not delivered to FloatingWindowsService.");
-            return false;
+            return Const.TEXT_TAG_PRE_RAW+copyValue;
         }
 		RegexMatch regexMatch = new RegexMatch(strategies,copyValue);
-		return regexMatch.checkAll();
+        if (regexMatch.checkAll()){
+            // TODO: 更多的返回方式
+            return copyValue;
+        }
+        return null;
 	}
 
 
