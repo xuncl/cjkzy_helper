@@ -18,6 +18,7 @@ import android.widget.ImageView;
 
 import com.kuaimei56.cjkzy_helper.entity.Strategy;
 import com.kuaimei56.cjkzy_helper.utils.Const;
+import com.kuaimei56.cjkzy_helper.utils.HttpUtils;
 import com.kuaimei56.cjkzy_helper.utils.LogUtils;
 import com.kuaimei56.cjkzy_helper.utils.RegexMatch;
 
@@ -171,6 +172,7 @@ public class FloatingWindowService extends Service{
                 // 显示绿色并发送
                 rootView.setBackgroundColor(Color.rgb(0, 255, 0));
 //                RawMessageSender.send(checkedResult);
+				HttpUtils.postJson(checkedResult);
             }else{
                 rootView.setBackgroundColor(Color.rgb(255, 0, 0));
             }
