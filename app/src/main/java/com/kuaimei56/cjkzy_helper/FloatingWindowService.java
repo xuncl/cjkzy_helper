@@ -3,7 +3,6 @@ package com.kuaimei56.cjkzy_helper;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
@@ -17,10 +16,7 @@ import android.view.View.OnTouchListener;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.kuaimei56.cjkzy_helper.data.DataFetcher;
-import com.kuaimei56.cjkzy_helper.data.MyDatabaseHelper;
 import com.kuaimei56.cjkzy_helper.entity.Strategy;
-import com.kuaimei56.cjkzy_helper.http.RawMessageSender;
 import com.kuaimei56.cjkzy_helper.utils.Const;
 import com.kuaimei56.cjkzy_helper.utils.LogUtils;
 import com.kuaimei56.cjkzy_helper.utils.RegexMatch;
@@ -71,11 +67,7 @@ public class FloatingWindowService extends Service{
 	@Override
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
-//        LogUtils.v(Const.STRATEGY_TAG, "FloatingWindowService start!");
 		if (intent != null) {
-//            if (strategies==null){
-//                strategies = (ArrayList<Strategy>) intent.getSerializableExtra(Const.KEY_STRATEGY_LIST);
-//            }
             int operation = intent.getIntExtra(Const.OPERATION, Const.OPERATION_SHOW);
 			switch (operation) {
 			case Const.OPERATION_SHOW:
@@ -178,7 +170,7 @@ public class FloatingWindowService extends Service{
 			if(null!=checkedResult){
                 // 显示绿色并发送
                 rootView.setBackgroundColor(Color.rgb(0, 255, 0));
-                RawMessageSender.send(checkedResult);
+//                RawMessageSender.send(checkedResult);
             }else{
                 rootView.setBackgroundColor(Color.rgb(255, 0, 0));
             }

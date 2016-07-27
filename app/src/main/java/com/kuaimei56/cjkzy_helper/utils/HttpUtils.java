@@ -1,58 +1,73 @@
 package com.kuaimei56.cjkzy_helper.utils;
 
+
 import android.content.Context;
+import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.BinaryHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-import com.loopj.android.http.TextHttpResponseHandler;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.kuaimei56.cjkzy_helper.MyApplication;
 
-import org.apache.http.HttpEntity;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by CLEVO on 2016/7/25.
  */
 public class HttpUtils {
-    private static AsyncHttpClient client = new AsyncHttpClient();    //实例话对象
 
-    static {
-        client.setTimeout(11000);   //设置链接超时，如果不设置，默认为10s
+    public static void volley_Post(final Context context) {
+        String url = "http://apis.juhe.cn/mobile/get?";
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+
+                    @Override
+                    public void onResponse(String arg0) {
+                        Toast.makeText(context, arg0,
+                                Toast.LENGTH_LONG).show();
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError arg0) {
+                Toast.makeText(context, "网络请求失败",
+                        Toast.LENGTH_LONG).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("phone", "13666666666");
+                map.put("key", "335adcc4e891ba4e4be6d7534fd54c5d");
+                return map;
+            }
+        };
+        request.setTag("abcPost");
+        MyApplication.getHttpQueue().add(request);
     }
 
-    //用一个完整url获取一个string对象
-    public static void get(String urlString, AsyncHttpResponseHandler res) {
-        client.get(urlString, res);
-    }
+    public void volley_Get(final Context context) {
+        String url = "http://apis.juhe.cn/mobile/get?phone=13666666666&key=335adcc4e891ba4e4be6d7534fd54c5d";
+        StringRequest request = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
 
-    //url里面带参数
-    public static void get(String urlString, RequestParams params, AsyncHttpResponseHandler res) {
-        client.get(urlString, params, res);
-    }
+                    @Override
+                    public void onResponse(String arg0) {
+                        Toast.makeText(context, arg0,
+                                Toast.LENGTH_LONG).show();
+                    }
+                }, new Response.ErrorListener() {
 
-    //不带参数，获取json对象或者数组
-    public static void get(String urlString, JsonHttpResponseHandler res) {
-        client.get(urlString, res);
-    }
-
-    //带参数，获取json对象或者数组
-    public static void get(String urlString, RequestParams params, JsonHttpResponseHandler res) {
-        client.get(urlString, params, res);
-    }
-
-    //下载数据使用，会返回byte数据
-    public static void get(String uString, BinaryHttpResponseHandler bHandler) {
-        client.get(uString, bHandler);
-    }
-
-    public static void post(Context context, String urlString, HttpEntity entity,String contentType,
-                            TextHttpResponseHandler res){
-        client.post(context, urlString, entity, contentType, res);
-    }
-
-
-    public static AsyncHttpClient getClient() {
-        return client;
+            @Override
+            public void onErrorResponse(VolleyError arg0) {
+                Toast.makeText(context, "网络请求失败",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+        request.setTag("abcGet");
+        MyApplication.getHttpQueue().add(request);
     }
 }

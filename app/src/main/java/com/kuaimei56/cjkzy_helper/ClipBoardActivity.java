@@ -16,7 +16,7 @@ import com.kuaimei56.cjkzy_helper.data.DataFetcher;
 import com.kuaimei56.cjkzy_helper.data.MyDatabaseHelper;
 import com.kuaimei56.cjkzy_helper.entity.Strategy;
 import com.kuaimei56.cjkzy_helper.utils.Const;
-import com.loopj.android.http.AsyncHttpClient;
+import com.kuaimei56.cjkzy_helper.utils.HttpUtils;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
@@ -52,10 +52,6 @@ public class ClipBoardActivity extends Activity implements OnClickListener {
 		initUI();
 		initDatabase();
 
-		// 集成友盟统计
-		MobclickAgent.UMAnalyticsConfig config = new MobclickAgent.UMAnalyticsConfig(mContext,
-				Const.UMENG_APPKEY, Const.UMENG_CHANNELID, MobclickAgent.EScenarioType.E_UM_NORMAL);
-		MobclickAgent.startWithConfigure(config);
 
 
 	}
@@ -107,6 +103,7 @@ public class ClipBoardActivity extends Activity implements OnClickListener {
 			Intent show = new Intent(this, FloatingWindowService.class);
 			show.putExtra(Const.OPERATION,Const.OPERATION_SHOW);
 			startService(show);
+			HttpUtils.volley_Post(this);
 			break;
 		case R.id.unbind:
 			// 隐藏悬浮窗
