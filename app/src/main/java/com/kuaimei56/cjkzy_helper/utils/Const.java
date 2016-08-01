@@ -5,7 +5,7 @@ package com.kuaimei56.cjkzy_helper.utils;
  */
 public final class Const {
 
-    public static final String BASE_URL = "http://10.0.2.2/cjkzy_v1";
+    public static final String BASE_URL = "http://www.kuaimei56.com";
 
     public static final String DB_NAME = "MyKeyword.db";
     public static final String TABLE_NAME = "Keyword";
