@@ -63,7 +63,7 @@ public class ClipBoardActivity extends Activity implements OnClickListener {
         mContext = this;
         initUI();
         initDatabase();
-
+        LogUtils.e("print",Const.CREATE_KEYWORD);
 
     }
 

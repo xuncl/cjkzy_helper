@@ -24,23 +24,6 @@ import java.util.Map;
 public class HttpUtils {
 
 
-//    HttpPost request = new HttpPost(url);
-//    // 先封装一个 JSON 对象
-//    JSONObject param = new JSONObject();
-//    param.put("name", "rarnu");
-//    param.put("password", "123456");
-//    // 绑定到请求 Entry
-//    StringEntity se = new StringEntity(param.toString());
-//    request.setEntity(se);
-//    // 发送请求
-//    HttpResponse httpResponse = new DefaultHttpClient().execute(request);
-//    // 得到应答的字符串，这也是一个 JSON 格式保存的数据
-//    String retSrc = EntityUtils.toString(httpResponse.getEntity());
-//    // 生成 JSON 对象
-//    JSONObject result = new JSONObject( retSrc);
-//    String token = result.get("token");
-
-
     private static final String TAG = "HTTP_UTILS";
 
     public static void postJson(String str) {
@@ -83,7 +66,7 @@ public class HttpUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        MyApplication.getHttpQueue().start();
+//        MyApplication.getHttpQueue().start(); //不需要
     }
 
 

@@ -25,7 +25,7 @@ public class FirstRunData {
     public void insertOriginalData(){
         SimpleDateFormat sdf = new SimpleDateFormat(Const.FORMAT_PATTERN, Locale.CHINA);
         String now = sdf.format(new Date());
-        insertOneKeyword("phone_number",1,1,"","(\\+86[0-9]{11})|([0-9]{11})",
+        insertOneKeyword("phone_number",1,1,"","@\\s*(.+)\\s*#\\$([\\s\\S]*[0-9]{11}[\\s\\S]*)",
                 0, now, "xcl");
 //        insertOneKeyword("phone_to_hypelink",1,3,"","/[^0-9+]*(?P<tel>(\\+86[0-9]{11})|([0-9]{11}))[^0-9+]*/",
 //                3, now, "xcl");

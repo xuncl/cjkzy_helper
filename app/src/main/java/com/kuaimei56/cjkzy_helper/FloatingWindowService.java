@@ -204,7 +204,7 @@ public class FloatingWindowService extends Service{
 	 */
 	private String checkString(String copyValue) {
         if (null==strategies) {
-            LogUtils.e(Const.STRATEGY_TAG, "The strategy list is not delivered to FloatingWindowsService.");
+            LogUtils.e(Const.STRATEGY_TAG, "The strategy list is invalid.");
             return Const.TEXT_TAG_PRE_RAW+copyValue;
         }
 		RegexMatch regexMatch = new RegexMatch(strategies,copyValue);
