@@ -160,45 +160,4 @@ public class ClipBoardActivity extends Activity implements OnClickListener {
         MobclickAgent.onPause(this);
     }
 
-
-    private String url = "http://apis.baidu.com/apistore/weatherservice/citylist";
-
-    private void stringRequestWithPost() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    //使用JSONObject给response转换编码
-                    JSONObject jsonObject = new JSONObject(response);
-                    mResultTextView.setText(jsonObject.toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                mResultTextView.setText(error.getMessage());
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> map = new HashMap<>();
-                map.put("cityname", "%E6%9C%9D%E9%98%B3");
-                return map;
-            }
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> map = new HashMap<>();
-                map.put("apikey", "f71e5f1e08cd5a7e42a7e9aa70d22458");
-                return map;
-            }
-        };
-        MyApplication.getHttpQueue().add(stringRequest);
-    }
-
-
-
 }

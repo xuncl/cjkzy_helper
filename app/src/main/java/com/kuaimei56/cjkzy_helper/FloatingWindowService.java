@@ -120,15 +120,17 @@ public class FloatingWindowService extends Service{
 
 		// 设置悬浮窗的长得宽
 //		params.width = getResources().getDimensionPixelSize(R.dimen.float_width);
-		params.width = WindowManager.LayoutParams.MATCH_PARENT;
+		params.width = WindowManager.LayoutParams.WRAP_CONTENT;
 		params.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
-		params.gravity = Gravity.LEFT | Gravity.TOP;
+		params.gravity = Gravity.START | Gravity.TOP;
 		params.x = 0;
 		params.y = 0;
+
+        ImageView closedImg = (ImageView) floatView.findViewById(R.id.float_window_closed);
 		
 		// 设置悬浮窗的Touch监听
-		floatView.setOnTouchListener(new OnTouchListener() {
+        closedImg.setOnTouchListener(new OnTouchListener() {
 			
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
@@ -170,15 +172,15 @@ public class FloatingWindowService extends Service{
 			String checkedResult = checkString(copyValue);
 			if(null!=checkedResult){
                 // 显示绿色并发送
-                rootView.setBackgroundColor(Color.rgb(0, 255, 0));
+                closedImg.setBackgroundColor(Color.rgb(0, 255, 0));
 //                RawMessageSender.send(checkedResult);
 				HttpUtils.postJson(checkedResult);
-            }else{
-                rootView.setBackgroundColor(Color.rgb(255, 0, 0));
-            }
+			}else{
+                closedImg.setBackgroundColor(Color.rgb(255, 0, 0));
+			}
         }
 		closedImg.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				if (isAdded) {

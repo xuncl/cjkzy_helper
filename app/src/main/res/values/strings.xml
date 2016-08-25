@@ -2,15 +2,14 @@
 
     <string name="app_name">超矿助手</string>
 
-    <string name="demo_text">\@ 朝  源 #$ 面煤涨价
-洗面210(5800)
-2-2原煤195（5700）
-1/2原煤160（5200）
-以上一票价
-销售电话13098267770test</string>
+    <string name="demo_text">\@荀辰龙#$府谷到天津港200！730公里！粉煤，无费用，每月10万吨！排队三小时以上累计20小时按一趟结运费！18347823962</string>
     
     <string name="tip">复制的文字如下:</string>
-    
+    <string name="startService">开启后台服务</string>
+    <string name="stopService">停止后台服务</string>
+    <string name="bindService">绑定后台服务到本页面</string>
+    <string name="unbindService">解绑后台服务</string>
+
     
     
     
