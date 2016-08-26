@@ -37,22 +37,21 @@ public class RegexMatch {
     }
 
     public boolean checkAll() {
+        isAllMatch = false;
         if ((null != str) && (null != strategyList)) {
             for (Strategy strategy : strategyList) {
                 if (strategy.getValid() > 0) {
                     // 按指定模式在字符串查找
                     String regex = strategy.getRegex();
-
                     // 创建 Pattern 对象
                     Pattern r = Pattern.compile(regex);
 
                     // 现在创建 matcher 对象
                     Matcher m = r.matcher(str);
+                    // 策略组：找到一条对应就认为成功。
                     if ((strategy.getMode() == 1) && (strategy.getResultMode() == 0)) {
                         if (m.find()) {
                             isAllMatch = true;
-                        } else {
-                            isAllMatch = false;
                         }
                     }
                 }

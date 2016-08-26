@@ -174,7 +174,7 @@ public class FloatingWindowService extends Service{
                 // 显示绿色并发送
                 closedImg.setBackgroundColor(Color.rgb(0, 255, 0));
 //                RawMessageSender.send(checkedResult);
-				HttpUtils.postJson(checkedResult);
+				HttpUtils.postJson(checkedResult,MyApplication.userRealName,MyApplication.userWx);
 			}else{
                 closedImg.setBackgroundColor(Color.rgb(255, 0, 0));
 			}

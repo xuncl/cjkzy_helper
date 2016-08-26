@@ -26,12 +26,14 @@ public class HttpUtils {
 
     private static final String TAG = "HTTP_UTILS";
 
-    public static void postJson(String str) {
+    public static void postJson(String str, String senderName, String senderWx) {
         String url = "/Raw/messages";
         JsonObjectRequest jsonObjectRequest;
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("content", str);
+            jsonObject.put("sender", senderName);
+            jsonObject.put("sender_wx", senderWx);
         } catch (JSONException e1) {
             e1.printStackTrace();
         }

@@ -9,6 +9,8 @@ import com.umeng.analytics.MobclickAgent;
 
 public class MyApplication extends Application {
     public static RequestQueue queue;
+    public static String userRealName="";
+    public static String userWx="";
 
     @Override
     public void onCreate() {

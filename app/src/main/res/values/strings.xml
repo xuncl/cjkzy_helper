@@ -10,7 +10,8 @@
     <string name="bindService">绑定后台服务到本页面</string>
     <string name="unbindService">解绑后台服务</string>
 
-    
-    
-    
+    <string name="nameHint">请输入姓名</string>
+    <string name="wxHint">请输入微信号</string>
+    <string name="loginButton">确定</string>
+
 </resources>
