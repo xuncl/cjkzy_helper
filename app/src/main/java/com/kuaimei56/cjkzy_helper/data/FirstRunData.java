@@ -19,20 +19,25 @@ public class FirstRunData {
 
     public FirstRunData(SQLiteDatabase db){
         this.db = db;
-        this.values = new ContentValues();
     }
 
     public void insertOriginalData(){
         SimpleDateFormat sdf = new SimpleDateFormat(Const.FORMAT_PATTERN, Locale.CHINA);
         String now = sdf.format(new Date());
-        insertOneKeyword("phone_number",1,1,"","@\\s*(.+)\\s*\\#\\$([\\s\\S]*[0-9]{11}[\\s\\S]*)",
+        insertOneKeyword("phone_number",1,1,"","@\\s*(.+)\\s*\\#\\s*(.+)\\s*\\$([\\s\\S]*[0-9]{11}[\\s\\S]*)",
                 0, now, "xcl");
 //        insertOneKeyword("phone_to_hypelink",1,3,"","/[^0-9+]*(?P<tel>(\\+86[0-9]{11})|([0-9]{11}))[^0-9+]*/",
 //                3, now, "xcl");
     }
 
+    public void updateOriginalData(){
+        updateOneKeyword("phone_number","@\\s*(.+)\\s*\\#\\s*(.+)\\s*\\$([\\s\\S]*[0-9]{11}[\\s\\S]*)");
+    }
+
     public void insertOneKeyword(String keyword, int valid, int mode, String result, String regex,
                                  int resultMode, String updateTime, String recorder){
+        this.values = new ContentValues();
+
         values.put(Const.COL_KEYWORD, keyword); // 关键字
         values.put(Const.COL_VALID, valid);     //1：有效；0：无效
         values.put(Const.COL_MODE, mode);       //模式：1：应含；2：不含；3：正则
@@ -44,5 +49,19 @@ public class FirstRunData {
         db.insert(Const.TABLE_NAME, null, values);
         values.clear();
         LogUtils.d(Const.DB_TAG, "INSERT INITIAL VALUE:" + keyword);
+    }
+
+    public void updateOneKeyword(String keyword,  String regex){
+        this.values = new ContentValues();
+
+        String whereClause = " " + Const.COL_KEYWORD + " = ? ";
+        values.put(Const.COL_REGEX, regex);     //正则表达式
+        String[] whereArgs =
+                {
+                        keyword
+                };
+        db.update(Const.TABLE_NAME, values, whereClause, whereArgs);
+        values.clear();
+        LogUtils.d(Const.DB_TAG, "UPDATE INITIAL VALUE:" + keyword);
     }
 }

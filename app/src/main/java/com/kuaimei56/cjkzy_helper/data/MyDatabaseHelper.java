@@ -30,6 +30,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        if (oldVersion<2){
+            FirstRunData fr = new FirstRunData(db);
+            fr.updateOriginalData();
+            Toast.makeText(mContext, "Update original data success.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

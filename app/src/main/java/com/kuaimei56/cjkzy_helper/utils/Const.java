@@ -28,6 +28,8 @@ public final class Const {
     public static final String KEY_COPY = "copyValue";
     public static final String KEY_STRATEGY_LIST = "strategyList";
 
+    public static final int DB_VERSION = 2;
+
     public static final String DB_TAG = "DB_TAG";
     public static final String STRATEGY_TAG = "STRATEGY_TAG";
 

@@ -68,7 +68,7 @@ public class ClipBoardActivity extends Activity implements OnClickListener {
     }
 
     private void initDatabase() {
-        dbHelper = new MyDatabaseHelper(mContext, Const.DB_NAME, null, 1);
+        dbHelper = new MyDatabaseHelper(mContext, Const.DB_NAME, null, Const.DB_VERSION); // 数据库版本更新
         SQLiteDatabase db = dbHelper.getWritableDatabase(); //如果没有库表，则会建立
         strategyList = DataFetcher.fetchOnce(db);
         db.close();

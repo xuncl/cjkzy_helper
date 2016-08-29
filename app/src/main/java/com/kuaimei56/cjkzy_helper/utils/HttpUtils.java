@@ -27,7 +27,7 @@ public class HttpUtils {
     private static final String TAG = "HTTP_UTILS";
 
     public static void postJson(String str, String senderName, String senderWx) {
-        String url = "/Raw/messages";
+        String url = "/index.php/Views/Raw/messages";
         JsonObjectRequest jsonObjectRequest;
         JSONObject jsonObject = new JSONObject();
         try {
